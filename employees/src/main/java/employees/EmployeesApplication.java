@@ -1,5 +1,6 @@
 package employees;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -12,7 +13,12 @@ public class EmployeesApplication {
 	}
 
 	@Bean
-	public EmployeesService employeesService() {
-		return new EmployeesService();
+	public EmployeeService employeeService() {
+		return new EmployeeService();
+	}
+
+	@Bean
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
 	}
 }

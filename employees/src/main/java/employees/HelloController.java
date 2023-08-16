@@ -1,33 +1,35 @@
 package employees;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
 
-@RestController("/")
+@RestController
+@RequestMapping("/hello")
 public class HelloController {
 
     private final HelloService helloService;
-    private final EmployeesService employeesService;
+    private final EmployeeService employeeService;
 
-    public HelloController(HelloService helloService, EmployeesService employeesService) {
+    public HelloController(HelloService helloService, EmployeeService employeeService) {
         this.helloService = helloService;
-        this.employeesService = employeesService;
+        this.employeeService = employeeService;
     }
 
-    @GetMapping("controller")
+    @GetMapping("/controller")
     public String sayHelloController() {
         return "Hello Controller " + LocalDateTime.now();
     }
 
-    @GetMapping("service")
+    @GetMapping("/service")
     public String sayHelloService() {
         return helloService.sayHello();
     }
 
-    @GetMapping("employee")
+    @GetMapping("/employee")
     public String sayHelloEmployee() {
-        return employeesService.sayHello();
+        return employeeService.sayHello();
     }
 }
