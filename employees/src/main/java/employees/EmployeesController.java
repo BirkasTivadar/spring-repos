@@ -1,10 +1,8 @@
 package employees;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -30,5 +28,10 @@ public class EmployeesController {
     @GetMapping("/lastName")
     public List<EmployeeDTO> listEmployeesByLasttName(@RequestParam(name = "name", required = false) String name) {
         return employeesService.listEmployeesByLastName(name);
+    }
+
+    @GetMapping("id/{id}")
+    public EmployeeDTO getEmployeeById(@PathVariable("id")Long id){
+        return employeesService.getEmployeeByID(id);
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @AllArgsConstructor
@@ -49,5 +50,15 @@ public class EmployeesService {
                 .toList();
         employees.clear();
         return result;
+    }
+
+    public EmployeeDTO getEmployeeByID(Long id) {
+        init();
+        Employee employee = employees.stream()
+                .filter(e -> Objects.equals(e.getId(), id))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("Wrong id"));
+        employees.clear();
+        return modelMapper.map(employee, EmployeeDTO.class);
     }
 }
